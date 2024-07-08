@@ -240,3 +240,41 @@
 //	}
 //
 //}
+
+
+
+// Given a sorted array of non-negative 
+//distinct integers, find the smallest missing 
+//non-negative element in it
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    int s = 0;
+    int e = n - 1;
+    int missing = n; // Default to n if no element is missing within the range
+
+    while (s <= e) {
+        int m = s + (e - s) / 2;
+
+        if (arr[m] == m) {
+            s = m + 1;
+        } else {
+            missing = m; // Update the missing value
+            e = m - 1;
+        }
+    }
+
+    cout << missing << endl;
+
+    return 0;
+}
+
